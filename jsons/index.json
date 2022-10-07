@@ -1,0 +1,171 @@
+{
+    "name": "sake",
+    "fields": [
+        {
+            "name": "BrandId",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": true,
+            "key": true,
+            "retrievable": true,
+            "searchable": false,
+            "sortable": false,
+            "analyzer": null,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "synonymMaps": [],
+            "fields": []
+        },
+        {
+            "name": "Brand",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": false,
+            "key": false,
+            "retrievable": true,
+            "searchable": true,
+            "sortable": true,
+            "analyzer": null,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "synonymMaps": [],
+            "fields": []
+        },
+        {
+            "name": "Brewery",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": false,
+            "key": false,
+            "retrievable": true,
+            "searchable": true,
+            "sortable": true,
+            "analyzer": null,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "synonymMaps": [],
+            "fields": []
+        },
+        {
+            "name": "AreaRank",
+            "type": "Edm.Int32",
+            "facetable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": true,
+            "analyzer": null,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "synonymMaps": [],
+            "fields": []
+        },
+        {
+            "name": "OverallRank",
+            "type": "Edm.Int32",
+            "facetable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": true,
+            "analyzer": null,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "synonymMaps": [],
+            "fields": []
+        },
+        {
+            "name": "Area",
+            "type": "Edm.String",
+            "facetable": false,
+            "filterable": false,
+            "key": false,
+            "retrievable": true,
+            "searchable": true,
+            "sortable": true,
+            "analyzer": null,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "synonymMaps": [],
+            "fields": []
+        },
+        {
+            "name": "FlavorTags",
+            "type": "Collection(Edm.String)",
+            "facetable": true,
+            "filterable": true,
+            "retrievable": true,
+            "searchable": true,
+            "analyzer": null,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "synonymMaps": [],
+            "fields": []
+        },
+        {
+            "name": "Score",
+            "type": "Edm.Double",
+            "facetable": true,
+            "filterable": true,
+            "retrievable": true,
+            "sortable": true,
+            "analyzer": null,
+            "indexAnalyzer": null,
+            "searchAnalyzer": null,
+            "synonymMaps": [],
+            "fields": []
+        }
+    ],
+    "suggesters": [
+        {
+            "name": "sg",
+            "searchMode": "analyzingInfixMatching",
+            "sourceFields": [
+                "Brand"
+            ]
+        }
+    ],
+    "scoringProfiles": [
+        {
+            "name": "brand",
+            "functions": [
+                {
+                    "fieldName": "OverallRank",
+                    "freshness": null,
+                    "interpolation": "linear",
+                    "magnitude": {
+                        "boostingRangeStart": 500,
+                        "boostingRangeEnd": 1,
+                        "constantBoostBeyondRange": false
+                    },
+                    "distance": null,
+                    "tag": null,
+                    "type": "magnitude",
+                    "boost": 10
+                }
+            ],
+            "functionAggregation": "sum",
+            "text": {
+                "weights": {
+                    "Area": 6,
+                    "Brand": 5,
+                    "Brewery": 1
+                }
+            }
+        }
+    ],
+    "defaultScoringProfile": null,
+    "corsOptions": {
+        "allowedOrigins": [
+            "*"
+        ],
+        "maxAgeInSeconds": null
+    },
+    "analyzers": [],
+    "charFilters": [],
+    "tokenFilters": [],
+    "tokenizers": [],
+    "similarity": {
+        "@odata.type": "#Microsoft.Azure.Search.BM25Similarity",
+        "k1": null,
+        "b": null
+    }
+}

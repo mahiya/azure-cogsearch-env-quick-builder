@@ -1,0 +1,6 @@
+{
+    "name": "cosmos-indexer",
+    "dataSourceName": "cosmos-source",
+    "targetIndexName": "sake",
+    "parameters": {}
+}

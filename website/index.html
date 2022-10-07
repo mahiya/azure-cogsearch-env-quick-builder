@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="control">
+            <input v-model="search" type="text" placeholder="検索" />
+        </div>
+        <div class="doc" v-for="doc in docs">
+            <p class="area">{{doc.Area}}</p>
+            <p class="brand">
+                <a target="_blank"
+                    v-bind:href="`https://www.google.com/search?q=${doc.Brewery}+${doc.Brand}`">{{doc.Brand}} /
+                    {{doc.Brewery}}</a>
+            </p>
+            <p class="rank">
+                <span>全国{{doc.OverallRank}}位</span>
+                <span>, </span>
+                <span>県内{{doc.AreaRank}}位</span>
+            </p>
+            <p class="flavor">{{doc.FlavorTags.join(", ")}}</p>
+            <p class="searchScore">{{doc["@search.score"]}}</p>
+        </div>
+        <p class="copyright"><a href="https://sakenowa.com">さけのわデータ</a>を利用しています</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="settings.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>

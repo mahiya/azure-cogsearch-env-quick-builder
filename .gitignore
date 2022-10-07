@@ -1,0 +1,4 @@
+bin
+obj
+.vs
+website/settings.js
